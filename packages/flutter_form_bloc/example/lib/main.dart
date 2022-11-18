@@ -73,6 +73,8 @@ class AllFieldsFormBloc extends FormBloc<String, String> {
 
   final time1 = InputFieldBloc<TimeOfDay?, Object>(initialValue: null);
 
+  final year = InputFieldBloc<DateTime?, Object>(initialValue: null);
+
   final double1 = InputFieldBloc<double, dynamic>(
     initialValue: 0.5,
   );
@@ -89,6 +91,7 @@ class AllFieldsFormBloc extends FormBloc<String, String> {
       dateAndTime1,
       time1,
       double1,
+      //year,
     ]);
   }
 
@@ -102,6 +105,7 @@ class AllFieldsFormBloc extends FormBloc<String, String> {
     date1.addFieldError('Awesome Error!');
     dateAndTime1.addFieldError('Awesome Error!');
     time1.addFieldError('Awesome Error!');
+    year.addFieldError('Awesome Error!');
   }
 
   @override
@@ -309,7 +313,16 @@ class AllFieldsForm extends StatelessWidget {
                           bloc: formBloc.file,
                           builder: (context, state) {
                             return Container();
-                          })
+                          }),
+                      YearPickerFieldBlocBuilder(
+                        yearPickerFieldBloc: formBloc.year,
+                        firstDate: DateTime(1900),
+                        lastDate:
+                            DateTime.now().subtract(Duration(days: 365 * 18)),
+                        decoration: InputDecoration(
+                            labelText: 'Year of birth',
+                            prefixIcon: Icon(Icons.cake)),
+                      ),
                     ],
                   ),
                 ),

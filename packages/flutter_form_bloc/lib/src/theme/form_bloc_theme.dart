@@ -296,6 +296,71 @@ class FilterChipFieldTheme extends Equatable {
   }
 }
 
+/// The theme of [YearPickerFieldBlocBuilder]
+class YearPickerFieldTheme extends FieldTheme {
+  /// The position of the text within the field
+  final TextAlign? textAlign;
+  final bool? showClearIcon;
+
+  final Widget? clearIcon;
+
+  final ClearSuffixButtonTheme clearSuffixButtonTheme;
+
+  const YearPickerFieldTheme({
+    TextStyle? textStyle,
+    MaterialStateProperty<Color?>? textColor,
+    InputDecorationTheme? decorationTheme,
+    this.textAlign,
+    this.showClearIcon,
+    @Deprecated('Use clearSuffixButtonTheme.icon') this.clearIcon,
+    this.clearSuffixButtonTheme = const ClearSuffixButtonTheme(),
+  }) : super(
+          textStyle: textStyle,
+          textColor: textColor,
+          decorationTheme: decorationTheme,
+        );
+
+  YearPickerFieldTheme copyWith({
+    TextStyle? textStyle,
+    MaterialStateProperty<Color?>? textColor,
+    InputDecorationTheme? decorationTheme,
+    bool? showClearIcon,
+    Widget? clearIcon,
+    ClearSuffixButtonTheme? clearSuffixButtonTheme,
+    TextAlign? textAlign,
+  }) {
+    return YearPickerFieldTheme(
+      textStyle: textStyle ?? this.textStyle,
+      textColor: textColor ?? this.textColor,
+      decorationTheme: decorationTheme ?? this.decorationTheme,
+      showClearIcon: showClearIcon ?? this.showClearIcon,
+      // ignore: deprecated_member_use_from_same_package
+      clearIcon: clearIcon ?? this.clearIcon,
+      clearSuffixButtonTheme:
+          clearSuffixButtonTheme ?? this.clearSuffixButtonTheme,
+      textAlign: textAlign ?? this.textAlign,
+    );
+  }
+
+  @override
+  List<Object?> get props => [
+        super.props,
+        textAlign,
+        showClearIcon,
+        clearIcon,
+        clearSuffixButtonTheme
+      ];
+
+  @override
+  String toString([ToString? toString]) {
+    return super.toString(ToString(runtimeType)
+      ..add('textAlign', textAlign)
+      ..add('showClearIcon', showClearIcon)
+      ..add('clearIcon', clearIcon)
+      ..add('clearSuffixButtonTheme', clearSuffixButtonTheme));
+  }
+}
+
 /// The theme of [DateTimeFieldBlocBuilder]
 class DateTimeFieldTheme extends FieldTheme {
   /// The position of the text within the field
